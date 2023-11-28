@@ -9,9 +9,11 @@ const io = new Server(server,{
     origin:"*"
   }
 });
-
+ 
  let linkArray = [];
-
+ 
+ var ankit = 2;
+ var ankittwo = 0;
 io.on('connection', (socket) => {
   console.log('a user connected');
     socket.on('chat message', (room) => {  
@@ -19,8 +21,13 @@ io.on('connection', (socket) => {
     });
     socket.on('chat link',(link)=>{
             if(linkArray.includes(link)){
-              socket.join(link);
-              socket.emit("room found");
+              if(ankittwo<ankit){
+                ankittwo++;
+                socket.join(link);
+                socket.emit("room found");
+              }else{
+                socket.emit("limit exceed");
+              }
             }
             else{
               socket.emit("room does not exist");
@@ -30,6 +37,10 @@ io.on('connection', (socket) => {
       socket.join(chatRoomLink);
       linkArray.push(chatRoomLink);
       console.log("*",linkArray);
+    });
+    socket.on('disconnect', function () {
+      console.log('Client disconnected');
+      ankittwo--;
     });
   });
  

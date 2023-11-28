@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import socket from '../connection/page';
-
-
+ 
+ 
 export default function page() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const search = searchParams.get('name');
     const [link,setLink] = useState("");
     const [room,setroom] = useState("");
-
+    const [limit,setLimit] = useState("");
+ 
     function handleClick(){
         socket.emit('chat link', link);
         socket.on('room does not exist',()=>{
@@ -19,15 +20,20 @@ export default function page() {
         socket.on('room found',()=>{
          router.push('/pages/chatpage?name='+search+'&link='+link);
         })
+        socket.on('limit exceed',()=>{
+          setLimit("Limit Exceed");
+          console.log("limit");
+         })
         setLink("");
     }
   return (
-    <div className='container' > 
+    <div className='container' >
       <div className='userform'>
         <h2>Enter your chat joining link:-</h2>
-        <input placeholder='Enter your joining link...' className='input button'  value={link} onChange={(event)=>setLink(event.target.value)}></input><br/> 
+        <input placeholder='Enter your joining link...' className='input button'  value={link} onChange={(event)=>setLink(event.target.value)}></input><br/>
         <button className='button' onClick={handleClick}>Submit link</button>
         <div id='noLink'>{room}</div>
+        <div>{limit}</div>
       </div>
     </div>
   )
