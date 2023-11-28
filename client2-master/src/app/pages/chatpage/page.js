@@ -11,7 +11,7 @@ export default function page() {
   const [message,setMessage] = useState("");
   const [data,setData] = useState([]);
   const dataTransfer = {name:search,data:message,link:chatLink}; 
-  
+  const value = document.getElementById('chatMessage');
 
   useEffect(()=>{
     socket.on('message',function(data){
@@ -24,13 +24,16 @@ export default function page() {
   },[]);
   
   function handleClick(){
-    socket.emit('chat message', dataTransfer);
-    setMessage("");
+    if(value==null){
+
+    }else{
+      socket.emit('chat message', dataTransfer);
+      setMessage("");
+    }
   }
   return (
     <div className='chat-conatiner'>
       <div className='chat-form'>
-      {/* <div className='right msg'>acdsjsssssssssssssssssssssssssssssssssssssssssssssssssssss</div> */}
         {data.map((item)=>{
         if(item.name==search){
           return <div className='right msg'>{item.name}:{item.data}</div>
@@ -39,7 +42,7 @@ export default function page() {
         }
         })}
       </div>
-      <input className='chat-input' value={message} onChange={(event)=>setMessage(event.target.value)}></input>
+      <input className='chat-input' id='chatMessage' value={message} onChange={(event)=>setMessage(event.target.value)}></input>
       <button className='chat-btn' onClick={handleClick}>Send</button>
     </div>
   )
