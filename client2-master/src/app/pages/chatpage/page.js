@@ -15,7 +15,6 @@ export default function page() {
 
   useEffect(()=>{
     socket.on('message',function(data){
-      // setData((prev)=>([...prev,data.name+" : "+data.data]));
       setData((prev)=>([...prev,data]));
       console.log(data);
    });
@@ -31,6 +30,7 @@ export default function page() {
   return (
     <div className='chat-conatiner'>
       <div className='chat-form'>
+      {/* <div className='right msg'>acdsjsssssssssssssssssssssssssssssssssssssssssssssssssssss</div> */}
         {data.map((item)=>{
         if(item.name==search){
           return <div className='right msg'>{item.name}:{item.data}</div>

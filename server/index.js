@@ -18,12 +18,18 @@ io.on('connection', (socket) => {
         io.to(room.link).emit('message', room);
     });
     socket.on('chat link',(link)=>{
-            socket.join(link);
+            if(linkArray.includes(link)){
+              socket.join(link);
+              socket.emit("room found");
+            }
+            else{
+              socket.emit("room does not exist");
+            }
     });
     socket.on('link',(chatRoomLink)=>{
       socket.join(chatRoomLink);
       linkArray.push(chatRoomLink);
-      console.log("aaaa",linkArray);
+      console.log("*",linkArray);
     });
   });
  
