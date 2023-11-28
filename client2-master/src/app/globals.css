@@ -1,0 +1,99 @@
+/* ******* CSS FOR USER NAME PAGE ******** */
+.container{
+  height: 100vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.userform{
+  border: 2px solid dodgerblue;
+  width: 33%;
+  height: 30vh;
+  border-radius: 8px;
+  background-color: lightblue;
+  text-align: center;
+}
+h2{
+  color: dodgerblue;
+}
+.input{
+  width: 50%;
+  height: 3vh;
+  text-align: center;
+}
+input[type=text]:focus {
+  border: 2px solid dodgerblue;
+}
+::placeholder {
+  color: dodgerblue;
+}
+.button{
+  margin-bottom: 10px;
+  border-radius: 3px;
+  background-color: lightblue;
+  color: dodgerblue;
+  border: 2px solid dodgerblue;
+}
+.button:hover{
+  background-color: dodgerblue;
+  color: white;
+}
+/* ******* CSS FOR CHAT BOX PAGE ******** */
+
+.chat-conatiner{
+  height: 100vh;
+}
+.chat-form{
+  border: 2px solid dodgerblue;
+  width: 33%;
+  height: 70vh;
+  border-radius: 8px;
+  background-color: lightblue;
+  overflow: scroll;
+
+}
+.chat-input{
+  width: 24.5%;
+  border-radius: 3px;
+  background-color: lightblue;
+  color: dodgerblue;
+  height: 2rem;
+  border: 2px solid dodgerblue;  
+}
+.chat-input:hover{
+  color: white;
+  background-color: dodgerblue;
+}
+.chat-btn{
+  width: 8%;
+  border-radius: 3px;
+  background-color: lightblue;
+  color: dodgerblue;
+  border: 2px solid dodgerblue;
+  height: 2.3rem;
+}
+.chat-btn:hover{
+  color: white;
+  background-color: dodgerblue;
+}
+.msg{
+  border: 2px solid dodgerblue;
+  width: 50%;
+  border-radius: 3px;
+  margin: 5px;
+  background-color: dodgerblue;
+  color: white;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.joining-link{
+  margin-bottom: 13px;
+}
+.reqd-user{
+  margin-bottom: 10px;
+  color: red;
+}
